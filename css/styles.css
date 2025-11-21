@@ -1,0 +1,94 @@
+/* --------- Global --------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #f3f3f3;
+    font-family: "Inter", sans-serif;
+    color: #0c1a36;
+}
+
+h1, h2, p {
+    margin: 0;
+}
+
+/* --------- Hero Section --------- */
+
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 100px 8%;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+}
+
+.hero-content h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    margin-top: 25px;
+    max-width: 400px;
+}
+
+/* --------- Hero Image --------- */
+
+.hero-image img {
+    width: 380px;
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+/* --------- Scroll Section --------- */
+
+.scroll-section {
+    padding: 100px 8%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 35px;
+}
+
+.text-card {
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    font-size: 1.2rem;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* --------- Fade-in Animation --------- */
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --------- Responsive --------- */
+
+@media (max-width: 850px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+    }
+}
