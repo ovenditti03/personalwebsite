@@ -4,10 +4,10 @@
 
 body {
     background-image: url(../images/crinklepaper.png);
-    background-size: fill;        /* fills the screen */
-    background-repeat: no-repeat;  /* prevents tiling */
-    background-position: center;   /* keeps it centered */
-    background-attachment: fixed;  /* parallax effect */
+    background-size: fill;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 
