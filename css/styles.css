@@ -3,12 +3,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
 body {
-    margin: 0;
-    padding: 0;
-    background: url(../images/crinklepaper.png);
-    font-family: "Inter", sans-serif;
-    color: #0c1a36;
+    background-image: url(../images/crinklepaper.png);
+    background-size: cover;        /* fills the screen */
+    background-repeat: no-repeat;  /* prevents tiling */
+    background-position: center;   /* keeps it centered */
+    background-attachment: fixed;  /* parallax effect */
 }
+
 
 h1, h2, p {
     margin: 0;
