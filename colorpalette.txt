@@ -1,0 +1,9 @@
+dark green - #5F6F52
+dark green blue - #3F4D4B
+blue - #1F2A44
+light cream - #F5F1EA
+mid cream - #E6DFD5
+taupe - #B7ADA3
+bright fun red - #D83A4B
+wine red - #81323B
+charcoal - #2A2A2A
