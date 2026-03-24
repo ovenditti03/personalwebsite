@@ -1,8 +1,13 @@
-/* --------- Global --------- */
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
 body {
+    min-height: 100vh;
+
     background-image: 
         linear-gradient(
             rgba(245, 241, 234, 0.85), 
@@ -15,7 +20,6 @@ body {
     background-position: center;
     background-attachment: fixed;
 }
-
 
 h1, h2, p {
     margin: 0;
@@ -99,3 +103,4 @@ h1, h2, p {
         gap: 40px;
     }
 }
+
