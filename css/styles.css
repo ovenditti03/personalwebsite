@@ -3,8 +3,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
 body {
-    background-image: url(../images/crinklepaper.png);
-    background-size: fill;
+    background-image: 
+        linear-gradient(
+            rgba(245, 241, 234, 0.85), 
+            rgba(230, 223, 213, 0.85)
+        ),
+        url('../images/crinklepaper.png');
+
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
