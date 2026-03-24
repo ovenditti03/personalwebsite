@@ -107,3 +107,178 @@ h1, h2, p {
     }
 }
 
+
+
+/* --------- Food Diary Page --------- */
+
+.food-diary-page {
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 80px 8%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.food-diary-header {
+    width: 100%;
+    max-width: 1150px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.food-diary-header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.food-diary-header p {
+    font-size: 1.1rem;
+    opacity: 0.8;
+}
+
+.food-diary-list {
+    width: 100%;
+    max-width: 1150px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.food-card {
+    display: grid;
+    grid-template-columns: minmax(260px, 1fr) 2fr;
+    gap: 28px;
+    width: 100%;
+    padding: 24px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+    align-items: start;
+}
+
+.food-card-left {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.food-main-photo {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 14px;
+    display: block;
+}
+
+.food-carousel-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.food-thumb-button {
+    border: none;
+    padding: 0;
+    margin: 0;
+    background: none;
+    cursor: pointer;
+}
+
+.food-thumb-button img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.food-thumb-button:hover img {
+    transform: scale(1.03);
+    opacity: 0.9;
+}
+
+.food-carousel-empty {
+    padding: 14px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.65);
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+.food-card-right {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.food-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.food-card-top h2 {
+    font-size: 2rem;
+    margin: 0 0 6px 0;
+}
+
+.food-entry-type {
+    font-size: 0.95rem;
+    text-transform: lowercase;
+    opacity: 0.75;
+}
+
+.food-stars {
+    font-size: 1.4rem;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.food-details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(180px, 1fr));
+    gap: 14px 24px;
+}
+
+.food-details-grid p {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.food-label {
+    font-size: 0.85rem;
+    text-transform: lowercase;
+    letter-spacing: 0.03em;
+    opacity: 0.65;
+}
+
+.food-value {
+    font-size: 1rem;
+    line-height: 1.45;
+}
+
+.food-notes-block h3 {
+    font-size: 1rem;
+    margin: 0 0 8px 0;
+    text-transform: lowercase;
+}
+
+.food-notes-block p {
+    line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+    .food-card {
+        grid-template-columns: 1fr;
+    }
+
+    .food-details-grid {
+        grid-template-columns: 1fr;
+    }
+}
