@@ -14,13 +14,7 @@ body {
     font-family: 'Inter', sans-serif;
     color: #2A2A2A;
 
-    background-image: 
-        linear-gradient(
-            rgba(245, 241, 234, 0.55),
-            rgba(230, 223, 213, 0.55)
-        ),
-        url('../images/crinklepaper.png');
-
+    background-image: url('../images/crinklepaper.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
