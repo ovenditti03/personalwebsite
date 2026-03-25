@@ -16,8 +16,8 @@ body {
 
     background-image: 
         linear-gradient(
-            rgba(245, 241, 234, 0.85),
-            rgba(230, 223, 213, 0.85)
+            rgba(245, 241, 234, 0.55),
+            rgba(230, 223, 213, 0.55)
         ),
         url('../images/crinklepaper.png');
 
