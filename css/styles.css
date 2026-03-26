@@ -1,23 +1,34 @@
 /* --------- Global --------- */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
+    --bg-main: #F5F1EA;
+    --bg-panel: rgba(230, 223, 213, 0.72);
+    --bg-card: rgba(255, 255, 255, 0.78);
+
     --text-main: #2A2A2A;
-    --text-soft: rgba(42, 42, 42, 0.75);
-    --text-faint: rgba(42, 42, 42, 0.62);
+    --text-soft: rgba(42, 42, 42, 0.78);
+    --text-faint: rgba(42, 42, 42, 0.58);
 
-    --panel-bg: rgba(255, 255, 255, 0.78);
-    --panel-bg-soft: rgba(255, 255, 255, 0.72);
-    --panel-border: rgba(42, 42, 42, 0.08);
+    --accent-green: #5F6F52;
+    --accent-green-blue: #3F4D4B;
+    --accent-navy: #1F2A44;
+    --accent-red: #D83A4B;
+    --accent-wine: #81323B;
+    --accent-taupe: #B7ADA3;
 
+    --border-soft: rgba(42, 42, 42, 0.08);
     --shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.08);
     --shadow-card: 0 10px 28px rgba(0, 0, 0, 0.06);
 
-    --accent-green: #5F6F52;
+    --radius-sm: 12px;
+    --radius-md: 18px;
+    --radius-lg: 24px;
 }
 
-html, body {
+html,
+body {
     width: 100%;
     min-height: 100%;
     margin: 0;
@@ -28,36 +39,45 @@ body {
     min-height: 100vh;
     font-family: 'Inter', sans-serif;
     color: var(--text-main);
-
     background-image:
         linear-gradient(
-            rgba(245, 241, 234, 0.55),
-            rgba(230, 223, 213, 0.55)
+            rgba(245, 241, 234, 0.58),
+            rgba(230, 223, 213, 0.58)
         ),
-        url('/images/crinklepaper.png');
-
+        url('../images/crinklepaper.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
 }
 
-.page-shell {
-    min-height: 100vh;
+* {
+    box-sizing: border-box;
 }
 
-h1, h2, h3, p, a, input, textarea, button, label {
+h1,
+h2,
+h3,
+p,
+a,
+label,
+input,
+textarea,
+button {
     font-family: 'Inter', sans-serif;
     color: inherit;
 }
 
-h1, h2, h3, p {
+h1,
+h2,
+h3,
+p {
     margin: 0;
 }
 
 a {
-    color: inherit;
     text-decoration: none;
+    color: inherit;
 }
 
 img {
@@ -65,74 +85,119 @@ img {
     max-width: 100%;
 }
 
-/* --------- Homepage / Hero --------- */
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+/* --------- Shared Layout --------- */
+
+.page-shell {
+    min-height: 100vh;
+}
+
+.section-shell {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* --------- Homepage Hero --------- */
 
 .hero {
+    min-height: 100vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-height: 100vh;
+    gap: 48px;
     padding: 100px 8%;
-    gap: 40px;
-    box-sizing: border-box;
+}
+
+.hero-content {
+    max-width: 520px;
 }
 
 .hero-content h1 {
-    font-size: 3.5rem;
+    font-size: 3.7rem;
+    line-height: 1;
     font-weight: 700;
-    color: var(--text-main);
+    color: var(--accent-green);
+    letter-spacing: -0.03em;
 }
 
 .hero-content h2 {
-    font-size: 3rem;
-    font-weight: 700;
     margin-top: 10px;
+    font-size: 3.1rem;
+    line-height: 1.02;
+    font-weight: 700;
     color: var(--text-main);
+    letter-spacing: -0.03em;
 }
 
 .hero-content p {
-    margin-top: 25px;
-    max-width: 400px;
-    font-size: 1.5rem;
-    line-height: 1.4;
+    margin-top: 26px;
+    max-width: 430px;
+    font-size: 1.45rem;
+    line-height: 1.45;
     color: var(--text-soft);
+}
+
+.hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .hero-image img {
     width: 380px;
     max-width: 100%;
-    border-radius: 10px;
+    border-radius: 14px;
 }
 
-/* --------- Homepage Menu Section --------- */
+/* --------- Homepage Menu / Contents --------- */
 
 .scroll-section {
-    padding: 100px 8%;
+    padding: 50px 8% 100px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 35px;
-    box-sizing: border-box;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 24px;
 }
 
 .text-card {
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.88);
-    border-radius: 12px;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-    font-size: 1.2rem;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-soft);
+    padding: 22px 20px;
+    min-height: 78px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.text-card a {
+    width: 100%;
+    font-size: 1.15rem;
+    line-height: 1.35;
+    color: var(--text-main);
 }
 
 .text-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.10);
+    border-color: rgba(95, 111, 82, 0.20);
 }
 
-/* --------- Fade-in Animation --------- */
+.text-card:hover a {
+    color: var(--accent-green);
+}
+
+/* --------- Fade In --------- */
 
 .fade-in {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(36px);
     transition: opacity 0.9s ease, transform 0.9s ease;
 }
 
@@ -141,7 +206,228 @@ img {
     transform: translateY(0);
 }
 
-/* --------- Entry Upload Pages --------- */
+/* --------- Generic Page Header --------- */
+
+.page-header {
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto 36px;
+}
+
+.page-eyebrow {
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+}
+
+.page-header h1 {
+    max-width: 780px;
+    margin-bottom: 12px;
+    font-size: 3rem;
+    line-height: 1.08;
+    font-weight: 700;
+    color: var(--accent-green);
+    letter-spacing: -0.03em;
+}
+
+.page-subtitle {
+    max-width: 720px;
+    font-size: 1.45rem;
+    line-height: 1.45;
+    color: var(--text-soft);
+}
+
+/* --------- Food Diary Feed --------- */
+
+.food-feed-page {
+    min-height: 100vh;
+    padding: 70px 20px 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.food-feed-header {
+    width: 100%;
+    max-width: 980px;
+    margin-bottom: 34px;
+}
+
+.food-feed-eyebrow {
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+}
+
+.food-feed-header h1 {
+    max-width: 780px;
+    margin-bottom: 12px;
+    font-size: 3rem;
+    line-height: 1.08;
+    font-weight: 700;
+    color: var(--accent-green);
+    letter-spacing: -0.03em;
+}
+
+.food-feed-subtitle {
+    max-width: 720px;
+    font-size: 1.45rem;
+    line-height: 1.45;
+    color: var(--text-soft);
+}
+
+.food-feed-list {
+    width: 100%;
+    max-width: 980px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.food-post {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(220px, 260px) 1fr;
+    gap: 24px;
+    padding: 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+}
+
+.food-post-left {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.food-post-main-image {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+.food-post-thumbs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.food-post-thumb {
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.food-post-thumb img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.food-post-thumb:hover img {
+    transform: scale(1.03);
+    opacity: 0.92;
+}
+
+.food-post-right {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.food-post-meta-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.food-post-title-wrap h2 {
+    margin-bottom: 6px;
+    font-size: 2rem;
+    line-height: 1.12;
+    font-weight: 700;
+    color: var(--text-main);
+    letter-spacing: -0.02em;
+}
+
+.food-post-type {
+    font-size: 0.95rem;
+    text-transform: lowercase;
+    color: var(--text-faint);
+}
+
+.food-post-stars {
+    padding-top: 4px;
+    font-size: 1.15rem;
+    white-space: nowrap;
+    color: var(--accent-wine);
+}
+
+.food-post-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.food-post-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    line-height: 1.55;
+}
+
+.food-post-label {
+    min-width: 110px;
+    font-size: 0.95rem;
+    text-transform: lowercase;
+    color: var(--text-faint);
+}
+
+.food-post-value {
+    flex: 1;
+    font-size: 1rem;
+    color: var(--text-main);
+}
+
+.food-post-notes {
+    padding-top: 12px;
+    border-top: 1px solid rgba(42, 42, 42, 0.08);
+}
+
+.food-post-notes h3 {
+    margin-bottom: 8px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.food-post-notes p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-soft);
+}
+
+.food-post-empty {
+    padding: 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.58);
+    text-align: center;
+    font-size: 0.92rem;
+    color: var(--text-faint);
+}
+
+/* --------- Upload / Entry Form Pages --------- */
 
 .entry-form-page {
     min-height: 100vh;
@@ -149,18 +435,16 @@ img {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    box-sizing: border-box;
 }
 
 .entry-form-shell {
     width: 100%;
-    max-width: 860px;
+    max-width: 880px;
     padding: 40px 36px;
-    background: var(--panel-bg);
-    border: 1px solid var(--panel-border);
-    border-radius: 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
     box-shadow: 0 12px 38px rgba(0, 0, 0, 0.08);
-    box-sizing: border-box;
     backdrop-filter: blur(6px);
 }
 
@@ -180,16 +464,17 @@ img {
 .entry-form-header h1 {
     margin-bottom: 12px;
     font-size: 3rem;
-    line-height: 1.1;
+    line-height: 1.08;
     font-weight: 700;
-    color: var(--text-main);
+    color: var(--accent-green);
+    letter-spacing: -0.03em;
 }
 
 .entry-form-subtitle {
-    max-width: 560px;
+    max-width: 580px;
     margin: 0 auto;
-    font-size: 1.5rem;
-    line-height: 1.4;
+    font-size: 1.45rem;
+    line-height: 1.45;
     color: var(--text-soft);
 }
 
@@ -226,9 +511,15 @@ img {
     border: 1px solid rgba(42, 42, 42, 0.12);
     border-radius: 14px;
     background: rgba(255, 255, 255, 0.84);
-    font-size: 1rem;
     color: var(--text-main);
-    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+    outline: none;
+    border-color: rgba(95, 111, 82, 0.35);
+    box-shadow: 0 0 0 3px rgba(95, 111, 82, 0.10);
 }
 
 .form-field textarea {
@@ -248,12 +539,13 @@ img {
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: transform 0.2s ease, opacity 0.2s ease;
+    transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
 }
 
 .entry-submit-button:hover {
     transform: translateY(-1px);
-    opacity: 0.92;
+    opacity: 0.94;
+    background: var(--accent-green-blue);
 }
 
 .entry-output-shell {
@@ -264,7 +556,7 @@ img {
 
 .entry-output-shell h2 {
     margin-bottom: 12px;
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 700;
     color: var(--text-main);
 }
@@ -277,201 +569,66 @@ img {
     color: #d9ffd7;
     overflow-x: auto;
     font-size: 0.92rem;
-    line-height: 1.5;
+    line-height: 1.55;
     white-space: pre-wrap;
     word-break: break-word;
 }
 
-/* --------- Food Diary Feed --------- */
+/* --------- Optional Generic Content Page Styling --------- */
 
-.food-feed-page {
+.content-page {
     min-height: 100vh;
     padding: 70px 20px 100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-sizing: border-box;
 }
 
-.food-feed-header {
+.content-panel {
     width: 100%;
     max-width: 980px;
-    margin-bottom: 34px;
-    text-align: left;
-}
-
-.food-feed-eyebrow {
-    margin-bottom: 12px;
-    font-size: 0.9rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-faint);
-}
-
-.food-feed-header h1 {
-    max-width: 780px;
-    margin-bottom: 12px;
-    font-size: 3rem;
-    line-height: 1.1;
-    font-weight: 700;
-    color: var(--text-main);
-}
-
-.food-feed-subtitle {
-    max-width: 720px;
-    font-size: 1.5rem;
-    line-height: 1.4;
-    color: var(--text-soft);
-}
-
-.food-feed-list {
-    width: 100%;
-    max-width: 980px;
-    display: flex;
-    flex-direction: column;
-    gap: 22px;
-}
-
-.food-post {
-    width: 100%;
-    display: grid;
-    grid-template-columns: minmax(220px, 260px) 1fr;
-    gap: 22px;
-    padding: 22px;
-    background: var(--panel-bg-soft);
-    border: 1px solid var(--panel-border);
-    border-radius: 22px;
-    box-shadow: var(--shadow-card);
-    box-sizing: border-box;
-}
-
-.food-post-left {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.food-post-main-image {
-    width: 100%;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-    border-radius: 16px;
-}
-
-.food-post-thumbs {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-}
-
-.food-post-thumb {
-    border: none;
-    background: none;
-    padding: 0;
-    cursor: pointer;
-}
-
-.food-post-thumb img {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.food-post-right {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.food-post-meta-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 16px;
-}
-
-.food-post-title-wrap h2 {
-    margin-bottom: 6px;
-    font-size: 2rem;
-    line-height: 1.15;
-    font-weight: 700;
-    color: var(--text-main);
-}
-
-.food-post-type {
-    font-size: 0.95rem;
-    text-transform: lowercase;
-    color: var(--text-faint);
-}
-
-.food-post-stars {
-    padding-top: 4px;
-    font-size: 1.2rem;
-    white-space: nowrap;
-    color: var(--text-main);
-}
-
-.food-post-details {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.food-post-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    line-height: 1.55;
-}
-
-.food-post-label {
-    min-width: 110px;
-    font-size: 0.95rem;
-    text-transform: lowercase;
-    color: var(--text-faint);
-}
-
-.food-post-value {
-    flex: 1;
-    font-size: 1rem;
-    color: var(--text-main);
-}
-
-.food-post-notes {
-    padding-top: 10px;
-    border-top: 1px solid rgba(42, 42, 42, 0.08);
-}
-
-.food-post-notes h3 {
-    margin-bottom: 8px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--text-main);
-}
-
-.food-post-notes p {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: var(--text-soft);
-}
-
-.food-post-empty {
-    padding: 12px;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.6);
-    text-align: center;
-    font-size: 0.92rem;
-    color: var(--text-faint);
+    margin: 0 auto;
+    padding: 34px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
 }
 
 /* --------- Responsive --------- */
+
+@media (max-width: 980px) {
+    .hero-content h1 {
+        font-size: 3.2rem;
+    }
+
+    .hero-content h2 {
+        font-size: 2.7rem;
+    }
+
+    .hero-content p,
+    .food-feed-subtitle,
+    .entry-form-subtitle,
+    .page-subtitle {
+        font-size: 1.25rem;
+    }
+
+    .food-feed-header h1,
+    .entry-form-header h1,
+    .page-header h1 {
+        font-size: 2.5rem;
+    }
+}
 
 @media (max-width: 850px) {
     .hero {
         flex-direction: column;
         text-align: center;
+        justify-content: center;
         gap: 40px;
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    .hero-content {
+        max-width: none;
     }
 
     .hero-content p {
@@ -491,19 +648,36 @@ img {
         align-items: flex-start;
     }
 
-    .entry-form-header h1,
-    .food-feed-header h1 {
-        font-size: 2.4rem;
-    }
-
-    .entry-form-subtitle,
-    .food-feed-subtitle {
-        font-size: 1.2rem;
+    .food-post-label {
+        min-width: 92px;
     }
 }
 
 @media (max-width: 768px) {
     body {
         background-attachment: scroll;
+    }
+
+    .hero-content h1 {
+        font-size: 2.7rem;
+    }
+
+    .hero-content h2 {
+        font-size: 2.3rem;
+    }
+
+    .food-feed-header h1,
+    .entry-form-header h1,
+    .page-header h1 {
+        font-size: 2.2rem;
+    }
+
+    .food-post-title-wrap h2 {
+        font-size: 1.7rem;
+    }
+
+    .entry-form-shell,
+    .content-panel {
+        padding: 28px 22px;
     }
 }
