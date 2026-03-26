@@ -7,61 +7,91 @@
     <link rel="stylesheet" href="../../css/styles.css">
 </head>
 <body>
+    <main class="entry-form-page">
+        <section class="entry-form-shell">
+            <div class="entry-form-header">
+                <p class="entry-form-eyebrow">food diary</p>
+                <h1>upload home meal</h1>
+                <p class="entry-form-subtitle">add a cozy little meal entry for your diary</p>
+            </div>
 
-<main class="upload-page">
-    <h1>upload meal</h1>
+            <form id="mealForm" class="entry-form">
+                <div class="form-grid">
+                    <div class="form-field full-width">
+                        <label for="title">meal name</label>
+                        <input type="text" id="title" placeholder="ex: spicy vodka rigatoni" required>
+                    </div>
 
-    <form id="mealForm" class="upload-form">
+                    <div class="form-field">
+                        <label for="people">people dined with</label>
+                        <input type="text" id="people" placeholder="comma separated">
+                    </div>
 
-        <input type="text" placeholder="Meal name" id="title" required>
+                    <div class="form-field">
+                        <label for="mealType">meal type</label>
+                        <input type="text" id="mealType" placeholder="breakfast, lunch, dinner">
+                    </div>
 
-        <input type="text" placeholder="Who you ate with (comma separated)" id="people">
+                    <div class="form-field full-width">
+                        <label for="inspiration">inspiration</label>
+                        <input type="text" id="inspiration" placeholder="recipe, TikTok, craving, cookbook...">
+                    </div>
 
-        <input type="text" placeholder="Meal type (breakfast/lunch/dinner)" id="mealType">
+                    <div class="form-field full-width">
+                        <label for="ingredients">ingredients</label>
+                        <input type="text" id="ingredients" placeholder="comma separated">
+                    </div>
 
-        <input type="text" placeholder="Inspiration (recipe, TikTok, etc.)" id="inspiration">
+                    <div class="form-field full-width">
+                        <label for="notes">notes</label>
+                        <textarea id="notes" placeholder="what you liked, what you'd change, little memory, etc."></textarea>
+                    </div>
 
-        <input type="text" placeholder="Ingredients (comma separated)" id="ingredients">
+                    <div class="form-field">
+                        <label for="mainImage">main photo</label>
+                        <input type="file" id="mainImage" accept="image/*">
+                    </div>
 
-        <textarea placeholder="Notes" id="notes"></textarea>
+                    <div class="form-field">
+                        <label for="photos">gallery photos</label>
+                        <input type="file" id="photos" accept="image/*" multiple>
+                    </div>
+                </div>
 
-        <label>Main Photo</label>
-        <input type="file" id="mainImage" accept="image/*">
+                <button type="submit" class="entry-submit-button">generate entry object</button>
+            </form>
 
-        <label>Gallery Photos (up to 12)</label>
-        <input type="file" id="photos" accept="image/*" multiple>
+            <section class="entry-output-shell">
+                <h2>output</h2>
+                <pre id="output"></pre>
+            </section>
+        </section>
+    </main>
 
-        <button type="submit">Generate Entry</button>
+    <script>
+        document.getElementById("mealForm").addEventListener("submit", function(e) {
+            e.preventDefault();
 
-    </form>
+            const entry = {
+                type: "meal",
+                title: document.getElementById("title").value,
+                location: "",
+                stars: 0,
+                people: document.getElementById("people").value.split(",").map(s => s.trim()).filter(Boolean),
+                cuisine: "",
+                mealType: document.getElementById("mealType").value,
+                drink: "",
+                inspiration: document.getElementById("inspiration").value,
+                ingredients: document.getElementById("ingredients").value.split(",").map(s => s.trim()).filter(Boolean),
+                mainImage: "../../images/food/YOUR-FOLDER/main.jpg",
+                photos: [
+                    "../../images/food/YOUR-FOLDER/1.jpg"
+                ],
+                notes: document.getElementById("notes").value
+            };
 
-    <pre id="output"></pre>
-</main>
-
-<script>
-document.getElementById("mealForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const entry = {
-        type: "meal",
-        title: document.getElementById("title").value,
-        location: "",
-        stars: 0,
-        people: document.getElementById("people").value.split(",").map(s => s.trim()).filter(Boolean),
-        cuisine: "",
-        mealType: document.getElementById("mealType").value,
-        drink: "",
-        inspiration: document.getElementById("inspiration").value,
-        ingredients: document.getElementById("ingredients").value.split(",").map(s => s.trim()).filter(Boolean),
-        mainImage: "images/food/YOUR-FOLDER/main.jpg",
-        photos: ["images/food/YOUR-FOLDER/1.jpg"],
-        notes: document.getElementById("notes").value
-    };
-
-    document.getElementById("output").textContent =
-        JSON.stringify(entry, null, 4);
-});
-</script>
-
+            document.getElementById("output").textContent = JSON.stringify(entry, null, 4);
+        });
+    </script>
 </body>
 </html>

@@ -10,12 +10,12 @@ const foodEntries = [
         drink: "Negroni",
         inspiration: "",
         ingredients: [],
-        mainImage: "images/notebookhome.png",
+        mainImage: "../../images/notebookhome.png",
         photos: [
-            "images/notecard.png",
-            "images/notecard.png",
-            "images/notecard.png",
-            "images/notecard.png"
+            "../../images/notecard.png",
+            "../../images/notecard.png",
+            "../../images/notecard.png",
+            "../../images/notecard.png"
         ],
         notes: "Amazing pasta, cozy atmosphere, and one of those meals that feels like a whole event."
     },
@@ -30,37 +30,36 @@ const foodEntries = [
         drink: "",
         inspiration: "Carbone copycat recipes and TikTok",
         ingredients: ["rigatoni", "tomato paste", "vodka", "heavy cream", "garlic", "parmesan"],
-        mainImage: "images/notebookhome.png",
+        mainImage: "../../images/notebookhome.png",
         photos: [
-            "images/notecard.png",
-            "images/notecard.png",
-            "images/notecard.png"
+            "../../images/notecard.png",
+            "../../images/notecard.png",
+            "../../images/notecard.png"
         ],
         notes: "Super creamy and good. Next time I’d add more chili flakes and a little more salt."
     }
 ];
 
 function formatStars(stars) {
-    const filled = "★".repeat(Math.max(0, Math.min(5, stars)));
-    const empty = "☆".repeat(5 - Math.max(0, Math.min(5, stars)));
-    return filled + empty;
+    const safeStars = Math.max(0, Math.min(5, Math.round(stars || 0)));
+    return "★".repeat(safeStars) + "☆".repeat(5 - safeStars);
 }
 
-function safeJoin(arr, fallback = "—") {
+function joinArray(arr, fallback = "—") {
     return Array.isArray(arr) && arr.length ? arr.join(", ") : fallback;
 }
 
-function createCarouselMarkup(entry) {
+function buildPhotoThumbs(entry) {
     const photos = Array.isArray(entry.photos) ? entry.photos.slice(0, 12) : [];
 
     if (!photos.length) {
-        return `<div class="food-carousel-empty">no extra photos</div>`;
+        return `<div class="food-post-empty">no extra photos</div>`;
     }
 
     return `
-        <div class="food-carousel-strip">
+        <div class="food-post-thumbs">
             ${photos.map((photo, index) => `
-                <button class="food-thumb-button" type="button" data-photo="${photo}" data-title="${entry.title}">
+                <button class="food-post-thumb" type="button" data-photo="${photo}" data-title="${entry.title}">
                     <img src="${photo}" alt="${entry.title} photo ${index + 1}">
                 </button>
             `).join("")}
@@ -68,47 +67,73 @@ function createCarouselMarkup(entry) {
     `;
 }
 
-function createRestaurantDetails(entry) {
+function buildDetails(entry) {
+    const sharedRows = `
+        <div class="food-post-row">
+            <span class="food-post-label">with</span>
+            <span class="food-post-value">${joinArray(entry.people, "solo")}</span>
+        </div>
+        <div class="food-post-row">
+            <span class="food-post-label">meal type</span>
+            <span class="food-post-value">${entry.mealType || "—"}</span>
+        </div>
+    `;
+
+    if (entry.type === "restaurant") {
+        return `
+            ${sharedRows}
+            <div class="food-post-row">
+                <span class="food-post-label">location</span>
+                <span class="food-post-value">${entry.location || "—"}</span>
+            </div>
+            <div class="food-post-row">
+                <span class="food-post-label">cuisine</span>
+                <span class="food-post-value">${entry.cuisine || "—"}</span>
+            </div>
+            <div class="food-post-row">
+                <span class="food-post-label">drink</span>
+                <span class="food-post-value">${entry.drink || "—"}</span>
+            </div>
+        `;
+    }
+
     return `
-        <p><span class="food-label">location</span><span class="food-value">${entry.location || "—"}</span></p>
-        <p><span class="food-label">cuisine</span><span class="food-value">${entry.cuisine || "—"}</span></p>
-        <p><span class="food-label">drink</span><span class="food-value">${entry.drink || "—"}</span></p>
+        ${sharedRows}
+        <div class="food-post-row">
+            <span class="food-post-label">inspiration</span>
+            <span class="food-post-value">${entry.inspiration || "—"}</span>
+        </div>
+        <div class="food-post-row">
+            <span class="food-post-label">ingredients</span>
+            <span class="food-post-value">${joinArray(entry.ingredients)}</span>
+        </div>
     `;
 }
 
-function createMealDetails(entry) {
-    return `
-        <p><span class="food-label">inspiration</span><span class="food-value">${entry.inspiration || "—"}</span></p>
-        <p><span class="food-label">ingredients</span><span class="food-value">${safeJoin(entry.ingredients)}</span></p>
-    `;
-}
-
-function createFoodCard(entry) {
+function createFoodPost(entry) {
     const article = document.createElement("article");
-    article.className = "food-card";
+    article.className = "food-post";
 
     article.innerHTML = `
-        <div class="food-card-left">
-            <img class="food-main-photo" src="${entry.mainImage}" alt="${entry.title}">
-            ${createCarouselMarkup(entry)}
+        <div class="food-post-left">
+            <img class="food-post-main-image" src="${entry.mainImage}" alt="${entry.title}">
+            ${buildPhotoThumbs(entry)}
         </div>
 
-        <div class="food-card-right">
-            <div class="food-card-top">
-                <div>
+        <div class="food-post-right">
+            <div class="food-post-meta-top">
+                <div class="food-post-title-wrap">
                     <h2>${entry.title}</h2>
-                    <p class="food-entry-type">${entry.type === "restaurant" ? "restaurant" : "home meal"}</p>
+                    <p class="food-post-type">${entry.type === "restaurant" ? "restaurant entry" : "home meal entry"}</p>
                 </div>
-                <div class="food-stars">${formatStars(entry.stars || 0)}</div>
+                <div class="food-post-stars">${formatStars(entry.stars)}</div>
             </div>
 
-            <div class="food-details-grid">
-                <p><span class="food-label">with</span><span class="food-value">${safeJoin(entry.people, "solo")}</span></p>
-                <p><span class="food-label">meal type</span><span class="food-value">${entry.mealType || "—"}</span></p>
-                ${entry.type === "restaurant" ? createRestaurantDetails(entry) : createMealDetails(entry)}
+            <div class="food-post-details">
+                ${buildDetails(entry)}
             </div>
 
-            <div class="food-notes-block">
+            <div class="food-post-notes">
                 <h3>notes</h3>
                 <p>${entry.notes || "—"}</p>
             </div>
@@ -120,21 +145,20 @@ function createFoodCard(entry) {
 
 document.addEventListener("DOMContentLoaded", () => {
     const list = document.getElementById("foodDiaryList");
+    if (!list) return;
 
     foodEntries.forEach(entry => {
-        list.appendChild(createFoodCard(entry));
+        list.appendChild(createFoodPost(entry));
     });
 
     list.addEventListener("click", (event) => {
-        const button = event.target.closest(".food-thumb-button");
+        const button = event.target.closest(".food-post-thumb");
         if (!button) return;
 
-        const card = button.closest(".food-card");
-        const mainPhoto = card.querySelector(".food-main-photo");
-        const newPhoto = button.dataset.photo;
-        const title = button.dataset.title;
+        const post = button.closest(".food-post");
+        const mainImage = post.querySelector(".food-post-main-image");
 
-        mainPhoto.src = newPhoto;
-        mainPhoto.alt = title;
+        mainImage.src = button.dataset.photo;
+        mainImage.alt = button.dataset.title;
     });
 });

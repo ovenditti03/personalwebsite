@@ -7,65 +7,101 @@
     <link rel="stylesheet" href="../../css/styles.css">
 </head>
 <body>
+    <main class="entry-form-page">
+        <section class="entry-form-shell">
+            <div class="entry-form-header">
+                <p class="entry-form-eyebrow">food diary</p>
+                <h1>upload restaurant</h1>
+                <p class="entry-form-subtitle">add a restaurant visit to your diary feed</p>
+            </div>
 
-<main class="upload-page">
-    <h1>upload restaurant</h1>
+            <form id="restaurantForm" class="entry-form">
+                <div class="form-grid">
+                    <div class="form-field full-width">
+                        <label for="title">restaurant name</label>
+                        <input type="text" id="title" placeholder="ex: monteverde" required>
+                    </div>
 
-    <form id="restaurantForm" class="upload-form">
+                    <div class="form-field">
+                        <label for="location">location</label>
+                        <input type="text" id="location" placeholder="city, state">
+                    </div>
 
-        <input type="text" placeholder="Restaurant name" id="title" required>
+                    <div class="form-field">
+                        <label for="stars">stars</label>
+                        <input type="number" id="stars" min="0" max="5" placeholder="0-5">
+                    </div>
 
-        <input type="text" placeholder="Location" id="location">
+                    <div class="form-field">
+                        <label for="people">who you went with</label>
+                        <input type="text" id="people" placeholder="comma separated">
+                    </div>
 
-        <input type="number" placeholder="Stars (1–5)" id="stars" min="1" max="5">
+                    <div class="form-field">
+                        <label for="cuisine">cuisine</label>
+                        <input type="text" id="cuisine" placeholder="italian, mexican, etc.">
+                    </div>
 
-        <input type="text" placeholder="Who you went with (comma separated)" id="people">
+                    <div class="form-field">
+                        <label for="mealType">meal type</label>
+                        <input type="text" id="mealType" placeholder="breakfast, lunch, dinner">
+                    </div>
 
-        <input type="text" placeholder="Cuisine" id="cuisine">
+                    <div class="form-field">
+                        <label for="drink">drink</label>
+                        <input type="text" id="drink" placeholder="what you had">
+                    </div>
 
-        <input type="text" placeholder="Meal type" id="mealType">
+                    <div class="form-field full-width">
+                        <label for="notes">notes</label>
+                        <textarea id="notes" placeholder="favorite dish, vibe, memory, etc."></textarea>
+                    </div>
 
-        <input type="text" placeholder="Drink" id="drink">
+                    <div class="form-field">
+                        <label for="mainImage">main photo</label>
+                        <input type="file" id="mainImage" accept="image/*">
+                    </div>
 
-        <textarea placeholder="Notes" id="notes"></textarea>
+                    <div class="form-field">
+                        <label for="photos">gallery photos</label>
+                        <input type="file" id="photos" accept="image/*" multiple>
+                    </div>
+                </div>
 
-        <label>Main Photo</label>
-        <input type="file" id="mainImage" accept="image/*">
+                <button type="submit" class="entry-submit-button">generate entry object</button>
+            </form>
 
-        <label>Gallery Photos (up to 12)</label>
-        <input type="file" id="photos" accept="image/*" multiple>
+            <section class="entry-output-shell">
+                <h2>output</h2>
+                <pre id="output"></pre>
+            </section>
+        </section>
+    </main>
 
-        <button type="submit">Generate Entry</button>
+    <script>
+        document.getElementById("restaurantForm").addEventListener("submit", function(e) {
+            e.preventDefault();
 
-    </form>
+            const entry = {
+                type: "restaurant",
+                title: document.getElementById("title").value,
+                location: document.getElementById("location").value,
+                stars: Number(document.getElementById("stars").value || 0),
+                people: document.getElementById("people").value.split(",").map(s => s.trim()).filter(Boolean),
+                cuisine: document.getElementById("cuisine").value,
+                mealType: document.getElementById("mealType").value,
+                drink: document.getElementById("drink").value,
+                inspiration: "",
+                ingredients: [],
+                mainImage: "../../images/food/YOUR-FOLDER/main.jpg",
+                photos: [
+                    "../../images/food/YOUR-FOLDER/1.jpg"
+                ],
+                notes: document.getElementById("notes").value
+            };
 
-    <pre id="output"></pre>
-</main>
-
-<script>
-document.getElementById("restaurantForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const entry = {
-        type: "restaurant",
-        title: document.getElementById("title").value,
-        location: document.getElementById("location").value,
-        stars: Number(document.getElementById("stars").value || 0),
-        people: document.getElementById("people").value.split(",").map(s => s.trim()).filter(Boolean),
-        cuisine: document.getElementById("cuisine").value,
-        mealType: document.getElementById("mealType").value,
-        drink: document.getElementById("drink").value,
-        inspiration: "",
-        ingredients: [],
-        mainImage: "images/food/YOUR-FOLDER/main.jpg",
-        photos: ["images/food/YOUR-FOLDER/1.jpg"],
-        notes: document.getElementById("notes").value
-    };
-
-    document.getElementById("output").textContent =
-        JSON.stringify(entry, null, 4);
-});
-</script>
-
+            document.getElementById("output").textContent = JSON.stringify(entry, null, 4);
+        });
+    </script>
 </body>
 </html>
