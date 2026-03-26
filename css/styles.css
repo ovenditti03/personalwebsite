@@ -279,6 +279,13 @@ a {
     max-width: 980px;
     margin-bottom: 34px;
     text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 100px 8%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    gap: 40px;
 }
 
 .food-feed-eyebrow {
@@ -294,7 +301,9 @@ a {
     line-height: 1.15;
     max-width: 780px;
     margin-bottom: 12px;
+    font-weight: 700;
 }
+
 
 .food-feed-subtitle {
     font-size: 1rem;
@@ -448,6 +457,7 @@ a {
     .food-feed-header h1,
     .entry-form-header h1 {
         font-size: 2rem;
+        font-weight: 700;
     }
 
     .food-post-meta-top {

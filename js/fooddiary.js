@@ -1,43 +1,5 @@
 const foodEntries = [
-    {
-        type: "restaurant",
-        title: "Monteverde",
-        location: "Chicago, IL",
-        stars: 5,
-        people: ["Emmy", "Kate"],
-        cuisine: "Italian",
-        mealType: "Dinner",
-        drink: "Negroni",
-        inspiration: "",
-        ingredients: [],
-        mainImage: "../../images/notebookhome.png",
-        photos: [
-            "../../images/notecard.png",
-            "../../images/notecard.png",
-            "../../images/notecard.png",
-            "../../images/notecard.png"
-        ],
-        notes: "Amazing pasta, cozy atmosphere, and one of those meals that feels like a whole event."
-    },
-    {
-        type: "meal",
-        title: "Spicy Vodka Rigatoni",
-        location: "",
-        stars: 4,
-        people: ["Emmy"],
-        cuisine: "",
-        mealType: "Dinner",
-        drink: "",
-        inspiration: "Carbone copycat recipes and TikTok",
-        ingredients: ["rigatoni", "tomato paste", "vodka", "heavy cream", "garlic", "parmesan"],
-        mainImage: "../../images/notebookhome.png",
-        photos: [
-            "../../images/notecard.png",
-            "../../images/notecard.png",
-            "../../images/notecard.png"
-        ],
-        notes: "Super creamy and good. Next time I’d add more chili flakes and a little more salt."
-    }
+    {}
 ];
 
 function formatStars(stars) {
