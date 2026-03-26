@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Restaurant</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+<body>
+
+<main class="upload-page">
+    <h1>upload restaurant</h1>
+
+    <form id="restaurantForm" class="upload-form">
+
+        <input type="text" placeholder="Restaurant name" id="title" required>
+
+        <input type="text" placeholder="Location" id="location">
+
+        <input type="number" placeholder="Stars (1–5)" id="stars" min="1" max="5">
+
+        <input type="text" placeholder="Who you went with (comma separated)" id="people">
+
+        <input type="text" placeholder="Cuisine" id="cuisine">
+
+        <input type="text" placeholder="Meal type" id="mealType">
+
+        <input type="text" placeholder="Drink" id="drink">
+
+        <textarea placeholder="Notes" id="notes"></textarea>
+
+        <label>Main Photo</label>
+        <input type="file" id="mainImage" accept="image/*">
+
+        <label>Gallery Photos (up to 12)</label>
+        <input type="file" id="photos" accept="image/*" multiple>
+
+        <button type="submit">Generate Entry</button>
+
+    </form>
+
+    <pre id="output"></pre>
+</main>
+
+<script>
+document.getElementById("restaurantForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const entry = {
+        type: "restaurant",
+        title: document.getElementById("title").value,
+        location: document.getElementById("location").value,
+        stars: Number(document.getElementById("stars").value || 0),
+        people: document.getElementById("people").value.split(",").map(s => s.trim()).filter(Boolean),
+        cuisine: document.getElementById("cuisine").value,
+        mealType: document.getElementById("mealType").value,
+        drink: document.getElementById("drink").value,
+        inspiration: "",
+        ingredients: [],
+        mainImage: "images/food/YOUR-FOLDER/main.jpg",
+        photos: ["images/food/YOUR-FOLDER/1.jpg"],
+        notes: document.getElementById("notes").value
+    };
+
+    document.getElementById("output").textContent =
+        JSON.stringify(entry, null, 4);
+});
+</script>
+
+</body>
+</html>

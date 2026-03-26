@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Meal</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+<body>
+
+<main class="upload-page">
+    <h1>upload meal</h1>
+
+    <form id="mealForm" class="upload-form">
+
+        <input type="text" placeholder="Meal name" id="title" required>
+
+        <input type="text" placeholder="Who you ate with (comma separated)" id="people">
+
+        <input type="text" placeholder="Meal type (breakfast/lunch/dinner)" id="mealType">
+
+        <input type="text" placeholder="Inspiration (recipe, TikTok, etc.)" id="inspiration">
+
+        <input type="text" placeholder="Ingredients (comma separated)" id="ingredients">
+
+        <textarea placeholder="Notes" id="notes"></textarea>
+
+        <label>Main Photo</label>
+        <input type="file" id="mainImage" accept="image/*">
+
+        <label>Gallery Photos (up to 12)</label>
+        <input type="file" id="photos" accept="image/*" multiple>
+
+        <button type="submit">Generate Entry</button>
+
+    </form>
+
+    <pre id="output"></pre>
+</main>
+
+<script>
+document.getElementById("mealForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const entry = {
+        type: "meal",
+        title: document.getElementById("title").value,
+        location: "",
+        stars: 0,
+        people: document.getElementById("people").value.split(",").map(s => s.trim()).filter(Boolean),
+        cuisine: "",
+        mealType: document.getElementById("mealType").value,
+        drink: "",
+        inspiration: document.getElementById("inspiration").value,
+        ingredients: document.getElementById("ingredients").value.split(",").map(s => s.trim()).filter(Boolean),
+        mainImage: "images/food/YOUR-FOLDER/main.jpg",
+        photos: ["images/food/YOUR-FOLDER/1.jpg"],
+        notes: document.getElementById("notes").value
+    };
+
+    document.getElementById("output").textContent =
+        JSON.stringify(entry, null, 4);
+});
+</script>
+
+</body>
+</html>
